@@ -154,12 +154,10 @@ while(True):
     #plt.subplot(121),plt.imshow(rgb_img1),plt.title('TIGER_COLOR')
       
     # the 'q' button is set as the 
-    # quitting button you may use any 
-    # desired button of your choice 
-    if cv2.waitKey(1) & 0xFF == ord('q'): 
-        break
-
+    # 1 - 6 switch between prompts
     key = cv2.waitKey(1)
+    if (key == ord('q') ):
+        break
     if (key == ord('1') ):
         prompt = "by rororo, 1girl, glasses, brown hair, brown eyes, smile, breasts, green shirt"
         stream.prepare(
