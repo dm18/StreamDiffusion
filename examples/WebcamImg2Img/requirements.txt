@@ -1,0 +1,4 @@
+matplotlib
+pillow
+mss
+cv2
