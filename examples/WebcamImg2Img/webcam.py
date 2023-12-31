@@ -48,8 +48,8 @@ pipe = StableDiffusionPipeline.from_pretrained("KBlueLeaf/kohaku-v3-rev2").to(
     dtype=torch.float16,
 )
 
-width = 640
-height = 360
+width = 960 #640
+height = 540 #360
 
 # Wrap the pipeline in StreamDiffusion
 stream = StreamDiffusion(
@@ -70,15 +70,8 @@ stream.vae = AutoencoderTiny.from_pretrained("madebyollin/taesd").to(device=pipe
 # Enable acceleration
 pipe.enable_xformers_memory_efficient_attention()
 
-prompt = "iron_man, metalic, red metal, red armor, armor, full armor, mechanical wings, power armor, solo, superhero"
-#prompt = "astronaut, helmet, solo, space, space helmet, gloves, looking at viewer, spacesuit"
-#prompt = "grim_reaper, solo, no humans, scythe, skeleton, skull, cloak, black cloak, hood, hood up, hooded cloak, looking at viewer, mask, teeth, red glowing eyes, glasses"
-#prompt = "1girl, solo, maid, dress, apron, falling petals, short hair, black hair, breasts, ribbon, ponytail, black dress, white bow, white apron"
-#prompt = "gundam, emblem, machinery, mecha, mobile suit, no humans, robot, thrusters, zeon, science fiction, armor, helmet, wepon, armored core, armored core 6, steel haze, full body, mecha focus, missile pod, red eyes, shoulder cannon, iron_man, metalic, red metal, red body,"
-#prompt = "1other, animal, animal ears, brown hair, japaneese clothes, kimono, mob face, rabit ears, rabbit, smile, white skin " 
-#prompt = "by rororo, 1girl, glasses, brown hair, brown eyes, smile, breasts, green shirt"
+prompt = "1girl, breasts, green eyes, brown hair, lipstick, makeup, blush, long hair, green shirt, nails, indoors, looking at viewer, solo, confetti, happy, jewelry, sparkle, gliter, flower petals, big eyes"
 negative_prompt = "low quality, bad quality, blurry, low resolution"
-#negative_prompt = "low quality, bad quality, blurry, low resolution, hair, human"
 guidance_scale= 1.4
 delta = 0.5
 
@@ -116,7 +109,7 @@ while(True):
     # by frame 
     ret, frame = vid.read() 
     #resize frame
-    frame = cv2.resize(frame, (640, 360)) #16:9\
+    frame = cv2.resize(frame, (width, height)) #16:9\
 
     #split RGB
     #b,g,r = cv2.split(frame)
@@ -159,7 +152,7 @@ while(True):
     if (key == ord('q') ):
         break
     if (key == ord('1') ):
-        prompt = "by rororo, 1girl, glasses, brown hair, brown eyes, smile, breasts, green shirt"
+        prompt = "1girl, breasts, green eyes, brown hair, lipstick, makeup, blush, long hair, green shirt, nails, indoors, looking at viewer, solo, confetti, happy, jewelry, sparkle, gliter, flower petals, big eyes"
         stream.prepare(
             prompt=prompt,
             negative_prompt=negative_prompt,
@@ -183,7 +176,7 @@ while(True):
             negative_prompt=negative_prompt,
         )
     elif (key == ord('5') ):
-        prompt = "by rororo, 1girl, glasses, brown hair, brown eyes, smile, breasts, green shirt"
+        prompt = "1girl, solo, maid, dress, apron, falling petals, short hair, black hair, breasts, ribbon, ponytail, black dress, white bow, white apron"
         stream.prepare(
             prompt=prompt,
             negative_prompt=negative_prompt,
