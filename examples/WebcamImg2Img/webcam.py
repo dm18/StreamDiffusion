@@ -43,6 +43,7 @@ def convert_from_image_to_cv2(img: Image) -> np.ndarray:
 #KBlueLeaf/kohaku-v2.1
 #stabilityai/sdxl-turbo
 #KBlueLeaf/kohaku-v3-rev2
+#thibaud/sdxl_dpo_turbo
 pipe = StableDiffusionPipeline.from_pretrained("KBlueLeaf/kohaku-v3-rev2").to(
     device=torch.device("cuda"),
     dtype=torch.float16,
@@ -183,6 +184,24 @@ while(True):
         )
     elif (key == ord('6') ):
         prompt = "1boy, smile, solo, green hair, short hair, serious, scar, black eyes, glasses"
+        stream.prepare(
+            prompt=prompt,
+            negative_prompt=negative_prompt,
+    )
+    elif (key == ord('7') ):
+        prompt = "frieza, golden frieza, 1boy, alien, aura, red eyes, big eyes, frown, gold skin, looking at viewer, solo"
+        stream.prepare(
+            prompt=prompt,
+            negative_prompt=negative_prompt,
+    )
+    elif (key == ord('8') ):
+        prompt = "1other, alien, monster, no humans, teeth, ribs, xenomorph, hr giger"
+        stream.prepare(
+            prompt=prompt,
+            negative_prompt=negative_prompt,
+    )
+    elif (key == ord('9') ):
+        prompt = "cat, black cat, cat ears, cat girl, cat tail, cat nose, whiskers, black fur, black body, black skin, solo, collar, big eyes, black hair, fangs, animal, animal ears, 1girl"
         stream.prepare(
             prompt=prompt,
             negative_prompt=negative_prompt,
