@@ -55,7 +55,7 @@ height = 540 #360
 # Wrap the pipeline in StreamDiffusion
 stream = StreamDiffusion(
     pipe,
-    t_index_list=[32, 45], #32, 45  35/45 sems better..
+    t_index_list=[35, 35, 45, 45], #[30, 35, 45, 45], #[32, 45],
     torch_dtype=torch.float16,
     width=width,
     height=height,
@@ -74,7 +74,7 @@ pipe.enable_xformers_memory_efficient_attention()
 prompt = "1girl, breasts, green eyes, brown hair, lipstick, makeup, blush, long hair, green shirt, nails, indoors, looking at viewer, solo, confetti, happy, jewelry, sparkle, gliter, flower petals, big eyes"
 negative_prompt = "low quality, bad quality, blurry, low resolution"
 guidance_scale= 1.4
-delta = 0.5
+delta = 0.9
 
 
 # Prepare the stream
@@ -187,25 +187,29 @@ while(True):
         stream.prepare(
             prompt=prompt,
             negative_prompt=negative_prompt,
-    )
+        )
     elif (key == ord('7') ):
         prompt = "frieza, golden frieza, 1boy, alien, aura, red eyes, big eyes, frown, gold skin, looking at viewer, solo"
         stream.prepare(
             prompt=prompt,
             negative_prompt=negative_prompt,
-    )
+        )
     elif (key == ord('8') ):
         prompt = "1other, alien, monster, no humans, teeth, ribs, xenomorph, hr giger"
         stream.prepare(
             prompt=prompt,
             negative_prompt=negative_prompt,
-    )
+        )
     elif (key == ord('9') ):
         prompt = "cat, black cat, cat ears, cat girl, cat tail, cat nose, whiskers, black fur, black body, black skin, solo, collar, big eyes, black hair, fangs, animal, animal ears, 1girl"
         stream.prepare(
             prompt=prompt,
             negative_prompt=negative_prompt,
-    )
+        )
+    elif (key == ord('z') ):
+        continue
+    elif (key == ord('x') ):
+        continue
 
   
 # After the loop release the cap object 
